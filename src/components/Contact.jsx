@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,32 +17,68 @@ const Contact = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! I will get back to you soon.')
-    setFormData({ name: '', email: '', projectType: 'Web App', message: '' })
+    e.preventDefault();
+    emailjs.send(
+      'service_3m2m5of',
+      'template_8yiyl7f',
+      {
+        title: 'Portfolio Contact',
+        name: formData.name,
+        email: formData.email,
+        message: `${formData.message}\n\nProject Type: ${formData.projectType}`,
+        time: new Date().toLocaleString(),
+      },
+      'IJQpGhgmrmQXP1Y0U'
+    )
+    .then((result) => {
+      alert('Thank you for your message! I will get back to you soon.');
+      setFormData({ name: '', email: '', projectType: 'Web App', message: '' });
+    }, (error) => {
+      alert('Oops! Something went wrong. Please try again later.');
+    });
   }
 
   return (
-    <section id="contact" className="py-24 px-4 bg-gray-900 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+    <section id="contact" className="py-40 px-4 bg-gradient-to-b from-black via-gray-950 to-gray-900 relative overflow-hidden">
+      {/* Falling snow layer */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              left: `${Math.random() * 100}%`,
+              animation: `snowfall ${Math.random() * 10 + 15}s linear infinite`,
+              animationDelay: `${Math.random() * 10}s`,
+              opacity: 0.6,
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Subtle parallax gradient layers */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-bl from-teal-950/5 via-transparent to-transparent" style={{animation: 'float 13s ease-in-out infinite'}}></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-cyan-950/5" style={{animation: 'float 17s ease-in-out infinite reverse'}}></div>
+      </div>
       
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In <span className="text-teal-400">Touch</span>
+        <div className="text-center mb-20">
+          <h2 className="text-6xl md:text-7xl font-black mb-8 tracking-tight">
+            <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">Get In </span>
+            <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <p className="text-gray-400 text-lg">
-            I'm open to <span className="text-teal-400 font-semibold">AI-focused projects</span> and <span className="text-teal-400 font-semibold">consulting</span>
+          <p className="text-gray-300 text-xl font-light">
+            I'm open to <span className="text-teal-400 font-medium">AI-focused projects</span> and <span className="text-cyan-400 font-medium">consulting</span>
           </p>
         </div>
         
-        <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-700/50 hover:border-teal-500/30 transition-all duration-300">
+        <div className="bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-12 md:p-16 shadow-2xl border border-gray-700/30">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-gray-300 font-semibold mb-2">
+              <label htmlFor="name" className="block text-gray-200 font-semibold mb-3 text-lg">
                 Name
               </label>
               <input
@@ -51,13 +88,13 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700/50 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-200"
+                className="w-full px-5 py-4 bg-gray-800/50 text-gray-100 border border-gray-600/50 rounded-xl focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/30 transition-all duration-200 backdrop-blur-sm"
                 placeholder="Your Name"
               />
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-gray-300 font-semibold mb-2">
+              <label htmlFor="email" className="block text-gray-200 font-semibold mb-3 text-lg">
                 Email
               </label>
               <input
@@ -67,13 +104,13 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700/50 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-200"
+                className="w-full px-5 py-4 bg-gray-800/50 text-gray-100 border border-gray-600/50 rounded-xl focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/30 transition-all duration-200 backdrop-blur-sm"
                 placeholder="your.email@example.com"
               />
             </div>
             
             <div>
-              <label htmlFor="projectType" className="block text-gray-300 font-semibold mb-2">
+              <label htmlFor="projectType" className="block text-gray-200 font-semibold mb-3 text-lg">
                 Project Type
               </label>
               <select
@@ -81,7 +118,7 @@ const Contact = () => {
                 name="projectType"
                 value={formData.projectType}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-700/50 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-200 cursor-pointer"
+                className="w-full px-5 py-4 bg-gray-800/50 text-gray-100 border border-gray-600/50 rounded-xl focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/30 transition-all duration-200 cursor-pointer backdrop-blur-sm"
               >
                 <option value="Web App">Web App</option>
                 <option value="AI Feature">AI Feature</option>
@@ -91,7 +128,7 @@ const Contact = () => {
             </div>
             
             <div>
-              <label htmlFor="message" className="block text-gray-300 font-semibold mb-2">
+              <label htmlFor="message" className="block text-gray-200 font-semibold mb-3 text-lg">
                 Message
               </label>
               <textarea
@@ -101,14 +138,14 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows="5"
-                className="w-full px-4 py-3 bg-gray-700/50 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-200 resize-none"
+                className="w-full px-5 py-4 bg-gray-800/50 text-gray-100 border border-gray-600/50 rounded-xl focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/30 transition-all duration-200 resize-none backdrop-blur-sm"
                 placeholder="Tell me about your project..."
               />
             </div>
             
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-105 transform"
+              className="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold px-8 py-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-teal-500/50 hover:scale-[1.02] text-lg"
             >
               Send Message
             </button>
@@ -118,7 +155,7 @@ const Contact = () => {
             <p className="text-gray-400 text-center mb-4">Or connect with me directly:</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="mailto:contact@example.com"
+                href="mailto:ayanpal58@gmail.com"
                 className="flex items-center gap-2 text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-200 group"
               >
                 <svg className="w-5 h-5 group-hover:scale-110 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">

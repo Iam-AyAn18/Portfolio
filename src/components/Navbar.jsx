@@ -12,52 +12,37 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gray-900/95 backdrop-blur-md z-50 border-b border-gray-800 shadow-lg shadow-gray-900/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-gray-900/80 border-b border-gray-700/50 shadow-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent hover:scale-110 transform transition-transform duration-200 cursor-pointer">
-              {'<Dev/>'}
+            <span className="text-3xl font-extrabold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-300">
+              {'<Ayan/>'}
             </span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-1">
-              <button
-                onClick={() => scrollToSection('hero')}
-                className="text-gray-300 hover:text-teal-400 hover:bg-gray-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection('about')}
-                className="text-gray-300 hover:text-teal-400 hover:bg-gray-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="text-gray-300 hover:text-teal-400 hover:bg-gray-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => scrollToSection('ai-expertise')}
-                className="text-gray-300 hover:text-teal-400 hover:bg-gray-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium"
-              >
-                AI Expertise
-              </button>
-              <button
-                onClick={() => scrollToSection('skills')}
-                className="text-gray-300 hover:text-teal-400 hover:bg-gray-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium"
-              >
-                Skills
-              </button>
+            <div className="ml-10 flex items-center space-x-1">
+              {[
+                { label: 'Home', section: 'hero' },
+                { label: 'About', section: 'about' },
+                { label: 'Projects', section: 'projects' },
+                { label: 'AI Expertise', section: 'ai-expertise' },
+                { label: 'Skills', section: 'skills' }
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.section)}
+                  className="text-gray-300 hover:text-teal-400 font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-gray-800/50"
+                >
+                  {item.label}
+                </button>
+              ))}
               <button
                 onClick={() => scrollToSection('contact')}
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white transition-all duration-200 px-5 py-2 rounded-lg font-medium shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-105 transform ml-2"
+                className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold px-6 py-2 rounded-xl shadow-lg hover:scale-105 hover:shadow-teal-500/50 transition-all duration-300 ml-2"
               >
                 Contact
               </button>

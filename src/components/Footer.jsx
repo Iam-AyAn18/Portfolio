@@ -2,18 +2,18 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800 py-12 px-4">
+    <footer className="bg-black border-t border-gray-800/50 py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col items-center space-y-6">
+        <div className="flex flex-col items-center space-y-10">
           {/* Tagline */}
           <div className="text-center">
-            <p className="text-teal-400 font-semibold text-lg mb-2">
+            <p className="text-2xl font-semibold text-teal-400 mb-2">
               Building the future with AI and code
             </p>
           </div>
           
           {/* Social Links */}
-          <div className="flex space-x-8">
+          <div className="flex space-x-10">
             <a
               href="https://github.com/Iam-AyAn18"
               target="_blank"
@@ -39,7 +39,7 @@ const Footer = () => {
             </a>
             
             <a
-              href="mailto:contact@example.com"
+              href="mailto:ayanpal58@gmail.com"
               className="text-gray-400 hover:text-teal-400 transition-all duration-200 hover:scale-110 transform group"
               aria-label="Email"
             >
@@ -50,9 +50,9 @@ const Footer = () => {
           </div>
           
           {/* Copyright */}
-          <div className="pt-6 border-t border-gray-800 w-full text-center">
-            <p className="text-gray-500 text-sm">
-              © {currentYear} <span className="text-teal-400 font-semibold">Ayan</span>. All rights reserved.
+          <div className="pt-8 border-t border-gray-700/50 w-full text-center">
+            <p className="text-gray-400 text-base">
+              © {currentYear} <span className="text-teal-400 font-bold">Ayan</span>. All rights reserved.
             </p>
           </div>
         </div>

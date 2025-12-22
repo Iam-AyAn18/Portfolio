@@ -1,38 +1,66 @@
 const About = () => {
   return (
-    <section id="about" className="py-24 px-4 bg-gray-800 relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(20, 184, 166, 0.4) 1px, transparent 0)', backgroundSize: '40px 40px'}}></div>
+    <section id="about" className="py-40 px-4 bg-gradient-to-b from-black via-gray-950 to-gray-900 relative overflow-hidden">
+      {/* Falling snow layer */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              left: `${Math.random() * 100}%`,
+              animation: `snowfall ${Math.random() * 10 + 15}s linear infinite`,
+              animationDelay: `${Math.random() * 10}s`,
+              opacity: 0.6,
+            }}
+          />
+        ))}
       </div>
       
-      <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-          About <span className="text-teal-400">Me</span>
+      {/* Subtle parallax gradient layers */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-bl from-teal-950/5 via-transparent to-transparent" style={{animation: 'float 14s ease-in-out infinite'}}></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-cyan-950/5" style={{animation: 'float 18s ease-in-out infinite reverse'}}></div>
+      </div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
+        <h2 className="text-6xl md:text-7xl font-black text-center mb-24 tracking-tight">
+          <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">About </span>
+          <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-pink-400 bg-clip-text text-transparent">Me</span>
         </h2>
-        
-        <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-700/50 hover:border-teal-500/30 transition-all duration-300">
-          <div className="text-gray-300 text-lg leading-relaxed space-y-6">
-            <p className="text-xl md:text-2xl font-semibold text-white mb-6">
-              👋 Hi, I'm <span className="text-teal-400">Ayan</span>
-            </p>
-            
-            <p>
-              I'm a backend engineer with a passion for building robust microservices and scalable APIs. 
-              My expertise lies in integrating cutting-edge AI models like <span className="text-teal-400 font-semibold">Groq</span> and <span className="text-teal-400 font-semibold">OpenAI</span> into production applications, 
-              creating seamless experiences that leverage the power of artificial intelligence.
-            </p>
-            
-            <p>
-              What excites me most is implementing <span className="text-teal-400 font-semibold">real-time AI features</span> and building <span className="text-teal-400 font-semibold">autonomous systems</span> that 
-              can think and respond intelligently. Whether it's smart recommendations, intelligent search, 
-              or conversational interfaces, I love turning AI concepts into practical, production-ready solutions.
-            </p>
-            
-            <p className="flex items-center gap-2">
-              <span className="text-2xl">📍</span>
-              <span>Based in <span className="text-teal-400 font-semibold">Kolkata</span>, India</span>
-            </p>
+
+        <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-3xl rounded-[3rem] p-16 md:p-20 shadow-2xl border border-gray-700/30">
+          <div className="text-gray-200 text-xl leading-relaxed space-y-10">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-4xl animate-bounce">👋</span>
+              <span className="font-bold text-3xl text-white">Hi, I'm <span className="bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">Ayan</span></span>
+            </div>
+
+            <div className="flex gap-8 flex-wrap">
+              <div className="flex-1 min-w-[250px] bg-gradient-to-br from-gray-800/60 to-gray-900/40 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-teal-500/10 hover:border-teal-500/30 transition-all duration-500">
+                <span className="text-3xl">🛠️</span>
+                <span className="ml-2 font-semibold text-teal-400 text-lg">Backend Engineer</span>
+                <p className="mt-4 text-gray-300 leading-relaxed">Passionate about building robust microservices and scalable APIs.</p>
+              </div>
+              <div className="flex-1 min-w-[250px] bg-gradient-to-br from-gray-800/60 to-gray-900/40 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-cyan-500/10 hover:border-cyan-500/30 transition-all duration-500">
+                <span className="text-3xl">🤖</span>
+                <span className="ml-2 font-semibold text-cyan-400 text-lg">AI Integrator</span>
+                <p className="mt-2 text-gray-300">Expert in integrating AI models like <span className="text-teal-400 font-semibold">Groq</span> and <span className="text-teal-400 font-semibold">OpenAI</span> into production apps.</p>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <span className="text-2xl">⚡</span>
+              <span className="ml-2 font-semibold text-cyan-300">Real-Time AI & Autonomous Systems</span>
+              <p className="mt-2 text-gray-300">I love building <span className="text-teal-400 font-semibold">real-time AI features</span> and <span className="text-teal-400 font-semibold">autonomous systems</span> that think and respond intelligently—smart recommendations, search, and conversational interfaces.</p>
+            </div>
+
+            <div className="flex items-center gap-3 mt-10">
+              <span className="text-3xl">📍</span>
+              <span className="font-semibold text-teal-400">Based in India</span>
+            </div>
           </div>
         </div>
       </div>
