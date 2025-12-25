@@ -4,7 +4,6 @@ Full-Stack Developer Portfolio - A modern, responsive portfolio website showcasi
 
 ## Features
 
-
 - 🎨 Modern dark theme with teal (#14B8A6) accents
 - 📱 Fully responsive design (mobile, tablet, desktop)
 - 🧭 Sticky navigation with smooth scrolling
