@@ -3,6 +3,7 @@
 Full-Stack Developer Portfolio - A modern, responsive portfolio website showcasing AI integration expertise for Ayan, a backend engineer specializing in AI applications.
 
 
+
 ## Features
 
 - 🎨 Modern dark theme with teal (#14B8A6) accents
